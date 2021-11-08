@@ -3,7 +3,7 @@
 <head></head>
 <body>
 {{--<a href="{{route('Category.categoryAdd')}}">Add</a>--}}
-<table>
+<table border="1">
     <tr>
         <td>ID</td>
         <td>Name</td>

@@ -30,8 +30,8 @@
         <input type="text" name="userPhone">
     </div>
     <div>
-        <label>type</label>
-        <input type="text" name="userType">
+        <label><input type="radio" name="userType" value="0" checked>hide</label>
+        <label><input type="radio" name="userType" value="1">show</label>
     </div>
     <input type="submit" value="Submit">
 </form>

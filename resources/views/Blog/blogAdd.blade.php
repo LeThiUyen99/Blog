@@ -13,10 +13,10 @@
         <label>Create date</label>
         <input type="date"  name="createDate">
     </div>
-{{--    <div>--}}
-{{--        <label>Update date</label>--}}
-{{--        <input type="date" name="updateDate">--}}
-{{--    </div>--}}
+    <div>
+        <label>Update date</label>
+        <input type="date" name="updateDate">
+    </div>
     <div>
         <label>Blog</label>
         <input type="text" name="blogName">

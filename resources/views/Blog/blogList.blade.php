@@ -2,8 +2,8 @@
 <html>
 <head></head>
 <body>
-{{--<a href="{{route('Category.categoryAdd')}}">Add</a>--}}
-<table>
+<a href="{{route('Blog.blogAdd')}}">Add</a>
+<table border="1">
     <tr>
         <td>ID</td>
         <td>Name blog</td>
@@ -28,10 +28,8 @@
             <td>{{$blog->createDate}}</td>
             <td>{{$blog->updateDate}}</td>
             <td>
-{{--                <a href="/Category/categoryEdit/{{$category->categoryId}}">Edit</a>--}}
-            </td>
-            <td>
-{{--                <a href="Category/categoryDelete/{{$category->categoryId}}">Delete</a>--}}
+                <a href="/Blog/blogEdit/{{$blog->blogId}}">Edit</a>
+                <a href="Blog/blogDelete/{{$blog->blogId}}">Delete</a>
             </td>
         </tr>
     @endforeach

@@ -38,6 +38,11 @@ Route::prefix('Blog')->group(function () {
 
     Route::get('/blogAdd', [BlogController::class, 'blogAdd'])->name('Blog.blogAdd');
     Route::post('/blogSave', [BlogController::class, 'blogSave'])->name('Blog.blogSave');
+
+    Route::get('/blogEdit/{blogId}', [BlogController::class, 'blogEdit'])->name('Blog.blogEdit');
+    Route::post('/blogUpdate/{id}', [BlogController::class,'blogUpdate'])->name('Blog.blogUpdate');
+
+    Route::get('/blogDelete/{blogId}', [BlogController::class, 'blogDelete'])->name('Blog.blogDelete');
 });
 
 Route::prefix('Account')->group(function () {

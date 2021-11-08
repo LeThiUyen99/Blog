@@ -27,7 +27,7 @@ class AccountController extends Controller
         $account->userMail = $request->input('userMail');
         $account->userAddress = $request->input('userAddress');
         $account->userPhone = $request->input('userPhone');
-        $account->userPhone = $request->input('userPhone');
+        $account->userType = $request->input('userType');
         $account->insert();
         return redirect()->route('Account.accountList');
     }

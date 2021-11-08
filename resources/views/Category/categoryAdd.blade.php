@@ -14,8 +14,8 @@
                 <input type="text" name="categoryName">
             </div>
             <div>
-                <label>Category type</label>
-                <input type="text" name="categoryType">
+                <label><input type="radio" name="categoryType" value="0" checked>hide</label>
+                <label><input type="radio" name="categoryType" value="1">show</label>
             </div>
             <input type="submit" value="Submit">
         </form>

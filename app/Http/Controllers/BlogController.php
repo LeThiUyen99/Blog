@@ -33,7 +33,7 @@ class BlogController extends Controller
     public function blogSave(Request $request) {
         $data = [
             'createDate' => $request->createDate,
-//            'updateDate' => $request->updateDate,
+            'updateDate' => $request->updateDate,
             'blogName' => $request->blogName,
             'blogInf' => $request->blogInf,
             'blogPicture' => $request->blogPicture,
@@ -43,5 +43,23 @@ class BlogController extends Controller
         ];
 
         Blog::create($data);
+        return redirect()->route('Blog.blogList');
+    }
+
+    public function blogEdit($id)
+    {
+        $users = Account::all();
+        $categories = Category::all();
+
+        $blogs = DB::table('blog')
+            ->join('user', 'blog.userId', '=', 'user.userId')
+            ->join('category', 'blog.categoryId', '=', 'category.categoryId')
+            ->where('blogId', $id)->first();
+
+        return view('Blog/blogEdit', [
+            'users' => $users,
+            'categories' => $categories,
+            'blogs' => $blogs
+        ]);
     }
 }

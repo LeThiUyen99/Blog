@@ -22,30 +22,4 @@ class Blog extends Model
     ];
 
     public $timestamps = false;
-
-//    public $blogId;
-//    public $createDate;
-//    public $updateDate;
-//    public $blogName;
-//    public $blogInf;
-//    public $blogPicture;
-//    public $blogContent;
-//    public $userId;
-//    public $categoryId;
-//
-//    public function insert()
-//    {
-//        DB::insert("insert into $this->table(createDate, updateDate, blogName, blogInf, blogPicture, blogContent, userId, categoryId)value (?,?,?,?,?,?,?,?)",[
-//            $this->createDate,
-//            $this->updateDate,
-//            $this->blogName,
-//            $this->blogInf,
-//            $this->blogPicture,
-//            $this->blogContent,
-//            $this->userId,
-//            $this->categoryId
-//        ]);
-//    }
-//    use HasFactory;
-//    protected $table = "blogs";
 }
