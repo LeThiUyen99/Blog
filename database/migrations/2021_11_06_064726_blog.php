@@ -16,7 +16,6 @@ class Blog extends Migration
         Schema::create('blog', function (Blueprint $table) {
             $table->increments('blogId');
             $table->date('createDate');
-            $table->date('updateDate');
             $table->string('blogName');
             $table->longText('blogInf');
             $table->string('blogPicture');

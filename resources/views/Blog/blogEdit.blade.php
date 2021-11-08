@@ -9,28 +9,26 @@
 @endif
 <form method="post" action="{{route('Blog.blogUpdate', [ 'id'=> $blogs->blogId ])}}">
     @csrf
+    @method('PUT')
     <div>
-        <label>Category</label>
+        <label>Create date</label>
         <input type="text" name="createDate" value="{{$blogs->createDate}}">
     </div>
     <div>
-        <label>Category</label>
-        <input type="text" name="updateDate" value="{{$blogs->updateDate}}">
-    </div>
-    <div>
-        <label>Category</label>
+        <label>Name</label>
         <input type="text" name="blogName" value="{{$blogs->blogName}}">
     </div>
     <div>
-        <label>Category</label>
+        <label>Info</label>
         <input type="text" name="blogInf" value="{{$blogs->blogInf}}">
     </div>
     <div>
-        <label>Category</label>
-        <input type="text" name="blogPicture" value="{{$blogs->blogPicture}}">
+        <label>Picture</label>
+        <input type="file" name="blogPicture" value="{{$blogs->blogPicture}}">
+        <img src="/image/{{ $blogs->blogPicture }}" width="300px">
     </div>
     <div>
-        <label>Category</label>
+        <label>Content</label>
         <input type="text" name="blogContent" value="{{$blogs->blogContent}}">
     </div>
     <div>

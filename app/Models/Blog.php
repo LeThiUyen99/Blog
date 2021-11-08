@@ -12,7 +12,6 @@ class Blog extends Model
 
     protected $fillable = [
         'createDate',
-        'updateDate',
         'blogName',
         'blogInf',
         'blogPicture',

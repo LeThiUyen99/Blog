@@ -7,15 +7,11 @@
 @if(Session::has('blogAdd'))
     <span>{{Session::get('blogAdd')}}</span>
 @endif
-<form method="post" action="{{route('Blog.blogSave')}}">
+<form method="post" action="{{route('Blog.blogSave')}}" enctype="multipart/form-data">
     @csrf
     <div>
         <label>Create date</label>
         <input type="date"  name="createDate">
-    </div>
-    <div>
-        <label>Update date</label>
-        <input type="date" name="updateDate">
     </div>
     <div>
         <label>Blog</label>
@@ -27,7 +23,7 @@
     </div>
     <div>
         <label>Picture</label>
-        <input type="text" name="blogPicture">
+        <input type="file" name="blogPicture">
     </div>
     <div>
         <label>Content</label>

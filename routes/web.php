@@ -40,7 +40,7 @@ Route::prefix('Blog')->group(function () {
     Route::post('/blogSave', [BlogController::class, 'blogSave'])->name('Blog.blogSave');
 
     Route::get('/blogEdit/{blogId}', [BlogController::class, 'blogEdit'])->name('Blog.blogEdit');
-    Route::post('/blogUpdate/{id}', [BlogController::class,'blogUpdate'])->name('Blog.blogUpdate');
+    Route::put('/blogUpdate/{id}', [BlogController::class,'blogUpdate'])->name('Blog.blogUpdate');
 
     Route::get('/blogDelete/{blogId}', [BlogController::class, 'blogDelete'])->name('Blog.blogDelete');
 });
