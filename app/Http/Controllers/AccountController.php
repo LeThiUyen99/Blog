@@ -2,33 +2,84 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Models\Account;
+use Illuminate\Http\Request;
 
 class AccountController extends Controller
 {
-    public function accountList()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
-        $accounts = DB::table('user')->get();
-        return view('Account/accountList', compact('accounts'));
+        //
     }
 
-    public function accountAdd()
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
-        return view('Account/accountAdd');
+        //
     }
 
-    public function accountSave(Request $request)
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
-        $account = new Account();
-        $account->userName = $request->input('userName');
-        $account->userPass = $request->input('userPass');
-        $account->userMail = $request->input('userMail');
-        $account->userAddress = $request->input('userAddress');
-        $account->userPhone = $request->input('userPhone');
-        $account->userType = $request->input('userType');
-        $account->insert();
-        return redirect()->route('Account.accountList');
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Account  $account
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Account $account)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Account  $account
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Account $account)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Account  $account
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Account $account)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Account  $account
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Account $account)
+    {
+        //
     }
 }

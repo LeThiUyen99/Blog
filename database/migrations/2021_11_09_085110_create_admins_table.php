@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Admin extends Migration
+class CreateAdminsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class Admin extends Migration
      */
     public function up()
     {
-        Schema::create('admin', function (Blueprint $table) {
-            $table->increments('adminId');
+        Schema::create('admins', function (Blueprint $table) {
+            $table->id();
             $table->string('adminName');
             $table->string('adminPass');
             $table->string('adminEmail');
             $table->string('adminAddress');
             $table->string('adminPhone');
             $table->boolean('adminType');
-            $table->boolean('role');
+            $table->timestamps();
         });
     }
 
@@ -32,6 +32,6 @@ class Admin extends Migration
      */
     public function down()
     {
-        Schema::drop('admin');
+        Schema::dropIfExists('admins');
     }
 }

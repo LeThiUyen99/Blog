@@ -2,53 +2,109 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Models\Category;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function categoryAdd()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
-        return view('Category/categoryAdd');
+        $categories = Category::latest()->paginate(5);
+
+        return view('categories.index',compact('categories'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
-    public function categorySave(Request $request)
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
-        $category = new Category();
-        $category->categoryName = $request->input('categoryName');
-        $category->categoryType = $request->input('categoryType');
-        $category->insert();
-        return redirect()->route('Category.categoryList');
+        return view('categories.create');
     }
 
-    public function categoryList()
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
-        $category = DB::table('category')->get();
-        return view('Category/categoryList', compact('category'));
-    }
-
-    public function categoryEdit($id)
-    {
-        $category = DB::table('category')->where('categoryId', $id)->first();
-        return view('Category/categoryEdit', compact('category'));
-    }
-
-    public function categoryUpdate(Request $request, $id)
-    {
-//        echo ($id);
-//        return
-//        dd($request->all());
-        DB::table('category')->where('categoryId', $request->id)->update([
-            'categoryName'=>$request->input('categoryName'),
-            'categoryType'=>$request->input('categoryType')
+        $request->validate([
+            'categoryName' => 'required',
         ]);
-        return redirect()->route('Category.categoryList');
+
+        $input = $request->all();
+//        dd($input);
+
+        Category::create($input);
+
+        return redirect()->route('categories.index')
+            ->with('success','Product created successfully.');
     }
 
-    public function categoryDelete($id)
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Category  $category
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Category $category)
     {
-        DB::table('category')->where('categoryId', $id)->delete();
-        return redirect()->route('Category.categoryList');
+        return view('categories.show',compact('category'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Category  $category
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Category $category)
+    {
+        return view('categories.edit',compact('category'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Category  $category
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Category $category)
+    {
+        $request->validate([
+            'categoryName' => 'required'
+        ]);
+
+        $input = $request->all();
+
+        $category->update($input);
+
+        return redirect()->route('categories.index')
+            ->with('success','Product updated successfully');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Category  $category
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Category $category)
+    {
+        $category->delete();
+
+        return redirect()->route('categories.index')
+            ->with('success','Product deleted successfully');
     }
 }

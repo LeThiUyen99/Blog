@@ -75,12 +75,14 @@ class BlogController extends Controller
         ]);
     }
 
-    public function blogUpdate(Request $request, $id)
+    public function blogUpdate(Request $request, $id , Blog $blog)
     {
-//                echo ($id);
+//                dd ($id);
 //        return
 //        dd($request->all());
+//        $user = Blog::findOrFail($id);
         $data = $request->all();
+//        dd($data);
         if ($image = $request->file('blogPicture')) {
             $destinationPath = 'image/';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
@@ -89,10 +91,9 @@ class BlogController extends Controller
         }else{
             unset($data['blogPicture']);
         }
-
-        Blog::updated(
-            ['id' =>$id],
-            $data);
+$blog->update($data);
+//        dd($blog);
+//        (new \App\Models\Blog)->update($data);
         return redirect()->route('Blog.blogList');
     }
     public function blogDelete($id)

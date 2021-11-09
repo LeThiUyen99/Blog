@@ -21,17 +21,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('Category')->group(function () {
-    Route::get('/', [CategoryController::class, 'categoryList'])->name('Category.categoryList');
-
-    Route::get('/categoryAdd', [CategoryController::class, 'categoryAdd'])->name('Category.categoryAdd');
-    Route::get('/categorySave', [CategoryController::class,'categorySave'])->name('Category.categorySave');
-
-    Route::get('/categoryEdit/{categoryId}', [CategoryController::class, 'categoryEdit'])->name('Category.categoryEdit');
-    Route::get('/categoryUpdate/{id}', [CategoryController::class,'categoryUpdate'])->name('Category.categoryUpdate');
-
-    Route::get('/categoryDelete/{categoryId}', [CategoryController::class, 'categoryDelete'])->name('Category.categoryDelete');
-});
+//Route::prefix('Category')->group(function () {
+//    Route::get('/', [CategoryController::class, 'categoryList'])->name('Category.categoryList');
+//
+//    Route::get('/categoryAdd', [CategoryController::class, 'categoryAdd'])->name('Category.categoryAdd');
+//    Route::get('/categorySave', [CategoryController::class,'categorySave'])->name('Category.categorySave');
+//
+//    Route::get('/categoryEdit/{categoryId}', [CategoryController::class, 'categoryEdit'])->name('Category.categoryEdit');
+//    Route::get('/categoryUpdate/{id}', [CategoryController::class,'categoryUpdate'])->name('Category.categoryUpdate');
+//
+//    Route::get('/categoryDelete/{categoryId}', [CategoryController::class, 'categoryDelete'])->name('Category.categoryDelete');
+//});
 
 Route::prefix('Blog')->group(function () {
     Route::get('/', [BlogController::class, 'blogList'])->name('Blog.blogList');
@@ -52,6 +52,8 @@ Route::prefix('Account')->group(function () {
     Route::get('/accountSave', [AccountController::class, 'accountSave'])->name('Account.accountSave');
 });
 
-Route::prefix('Admin')->group(function () {
-    Route::get('/', [AdminController::class, 'adminList'])->name('Admin.adminList');
-});
+Route::resource('admins', AdminController::class);
+Route::resource('categories', CategoryController::class);
+//Route::prefix('Admin')->group(function () {
+//    Route::get('/', [AdminController::class, 'adminList'])->name('Admin.adminList');
+//});
