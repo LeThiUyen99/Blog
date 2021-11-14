@@ -1,17 +1,46 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>List blog</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
-</head>
-<body>
-<div class="container mt-3">
-    <a href="{{route('Blog.blogAdd')}}">Add</a>
-    <table class="table">
-        <thead>
+@extends('main-dashboard')
+@section('content')
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Danh sách bài viết
+    </div>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    @if(session('message'))
+        <div class="alert alert-success" role="alert">
+            {{session('message')}}
+        </div>
+    @endif
+    @if(session('error'))
+        <div class="alert alert-danger" role="alert">
+            {{session('error')}}
+        </div>
+    @endif
+    <div class="row w3-res-tb">
+        <div class="col-sm-5 m-b-xs">
+        <a href="{{route('Blog.blogAdd')}}" class="btn btn-primary">Thêm bài viết</a>
+        </div>
+        <div class="col-sm-4">
+        </div>
+        <div class="col-sm-3">
+            <div class="input-group">
+                <input type="text" class="input-sm form-control" placeholder="Search">
+                <span class="input-group-btn">
+            <button class="btn btn-sm btn-default" type="button">Go!</button>
+          </span>
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped b-t b-light">
+            <thead>
             <tr>
                 <th>ID</th>
                 <th>Name blog</th>
@@ -23,24 +52,33 @@
                 <th>create date</th>
                 <th>Action</th>
             </tr>
-        </thead>
-        @foreach($blogs as $blog)
-            <tr>
-                <td>#{{$blog->blogId}}</td>
-                <td>{{$blog->blogName}}</td>
-                <td>{{$blog->blogInf}}</td>
-                <td><img src="/image/{{ $blog->blogPicture }}" width="100px"></td>
-                <td>{{$blog->blogContent}}</td>
-                <td>{{$blog->userName}}</td>
-                <td>{{$blog->categoryName}}</td>
-                <td>{{$blog->createDate}}</td>
-                <td>
-                    <a href="/Blog/blogEdit/{{$blog->blogId}}">Edit</a>
-                    <a href="Blog/blogDelete/{{$blog->blogId}}">Delete</a>
-                </td>
-            </tr>
-        @endforeach
-    </table>
+            </thead>
+            <tbody>
+            @foreach($blogs as $blog)
+                <tr>
+                    <td>#{{$blog->id}}</td>
+                    <td>{{$blog->blogName}}</td>
+                    <td>{!! $blog->blogInf !!}</td>
+                    <td><img src="{{asset($blog->blogPicture)  }}" width="100px"></td>
+                    <td>{!! $blog->blogContent !!}</td>
+                    <td>{{$blog->account->userName}}</td>
+                    <td>{{$blog->category->categoryName}}</td>
+                    <td>{{$blog->createDate}}</td>
+                    <td>
+                        <a href="/Blog/blogEdit/{{$blog->id}}" class="btn btn-primary">Edit</a>
+                        <a href="Blog/blogDelete/{{$blog->blogId}}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            @endforeach
+
+            </tbody>
+        </table>
+    </div>
+
 </div>
-</body>
-</html>
+@endsection
+@section('style-js')
+    <script>
+        $('div.alert').delay(5000).slideUp(300);
+    </script>
+@endsection

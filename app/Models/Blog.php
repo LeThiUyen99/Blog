@@ -19,6 +19,13 @@ class Blog extends Model
         'userId',
         'categoryId',
     ];
-
+    public function account()
+    {
+        return $this->belongsTo('App\Models\Account','userId');
+    }
+    public function category()
+    {
+        return $this->belongsTo('App\Models\Category','categoryId');
+    }
     public $timestamps = false;
 }

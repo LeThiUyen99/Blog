@@ -18,9 +18,9 @@ use App\Http\Controllers\AdminController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
-
+Route::get('/logout', '\App\Http\Controllers\Controller@logout')->name("log-out");
 //Route::prefix('Category')->group(function () {
 //    Route::get('/', [CategoryController::class, 'categoryList'])->name('Category.categoryList');
 //
@@ -39,8 +39,8 @@ Route::prefix('Blog')->group(function () {
     Route::get('/blogAdd', [BlogController::class, 'blogAdd'])->name('Blog.blogAdd');
     Route::post('/blogSave', [BlogController::class, 'blogSave'])->name('Blog.blogSave');
 
-    Route::get('/blogEdit/{blogId}', [BlogController::class, 'blogEdit'])->name('Blog.blogEdit');
-    Route::put('/blogUpdate/{id}', [BlogController::class,'blogUpdate'])->name('Blog.blogUpdate');
+    Route::get('/blogEdit/{id}', [BlogController::class, 'blogEdit'])->name('Blog.blogEdit');
+    Route::post('/blogUpdate/{id}', [BlogController::class,'blogUpdate'])->name('Blog.blogUpdate');
 
     Route::get('/blogDelete/{blogId}', [BlogController::class, 'blogDelete'])->name('Blog.blogDelete');
 });
@@ -57,3 +57,7 @@ Route::resource('categories', CategoryController::class);
 //Route::prefix('Admin')->group(function () {
 //    Route::get('/', [AdminController::class, 'adminList'])->name('Admin.adminList');
 //});
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('main-dashboard');
+})->name('dashboard');
